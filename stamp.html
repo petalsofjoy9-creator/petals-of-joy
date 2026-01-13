@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Petals of Joy | Stamp Card</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <style>
+    .topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px;}
+    .pillBtn{border:none;cursor:pointer;padding:10px 14px;border-radius:999px;background:rgba(255,255,255,0.75);color:#8b0f45;font-weight:700;box-shadow:0 12px 22px rgba(122,17,67,0.12);}
+
+    .title{font-size:30px;font-weight:900;color:#8b0f45;margin-top:6px;letter-spacing:0.5px;}
+    .sub{margin-top:10px;font-size:12px;letter-spacing:1px;color:rgba(122,17,67,0.65);}
+    .who{margin-top:8px;font-size:12px;color:rgba(122,17,67,0.70);}
+
+    .stampGrid{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns:repeat(5, 1fr);
+      gap:14px;
+      align-items:center;
+      justify-items:center;
+    }
+
+    .circle{
+      width:58px;height:58px;
+      border-radius:999px;
+      border:2.5px solid rgba(122,17,67,0.55);
+      background:rgba(255,255,255,0.35);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:0 10px 22px rgba(0,0,0,0.06);
+    }
+
+    .circle.filled{
+      border-color:rgba(255,63,159,0.9);
+      background:radial-gradient(circle at 30% 30%, rgba(255,255,255,0.95), rgba(255,110,190,0.80));
+    }
+
+    .rewards{
+      margin-top:16px;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+
+    .reward{
+      padding:12px;
+      border-radius:16px;
+      background:rgba(255,255,255,0.55);
+      border:1px solid rgba(255,255,255,0.55);
+      box-shadow:0 16px 30px rgba(122,17,67,0.10);
+      text-align:center;
+      color:rgba(122,17,67,0.75);
+      font-weight:800;
+    }
+
+    .reward.active{
+      color:white;
+      background:linear-gradient(180deg, #ff66b5 0%, #ff3f9f 100%);
+      box-shadow:0 18px 40px rgba(255,63,159,0.35);
+      border-color:transparent;
+    }
+
+    .actions{
+      margin-top:16px;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+
+    .btnA{
+      width:100%;
+      padding:14px;
+      border:none;
+      border-radius:16px;
+      cursor:pointer;
+      font-size:18px;
+      font-weight:900;
+      color:white;
+      background:linear-gradient(180deg, #ff66b5 0%, #ff3f9f 100%);
+      box-shadow:0 16px 30px rgba(255,63,159,0.30);
+    }
+
+    .btnB{
+      width:100%;
+      padding:14px;
+      border:none;
+      border-radius:16px;
+      cursor:pointer;
+      font-size:18px;
+      font-weight:900;
+      color:#8b0f45;
+      background:rgba(255,255,255,0.80);
+      box-shadow:0 16px 30px rgba(122,17,67,0.12);
+    }
+
+    /* ✅ Admin tools */
+    .adminTools{
+      margin-top:14px;
+      padding:12px;
+      border-radius:16px;
+      background:rgba(255,255,255,0.55);
+      border:1px solid rgba(255,255,255,0.55);
+      box-shadow:0 16px 30px rgba(122,17,67,0.10);
+    }
+    .toolsTitle{
+      font-weight:900;
+      color:#8b0f45;
+      text-align:center;
+      margin-bottom:10px;
+      font-size:14px;
+    }
+    .toolRow{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      align-items:center;
+    }
+    .toolInput{
+      width:100%;
+      padding:12px 14px;
+      border-radius:999px;
+      border:1px solid rgba(255,79,163,0.35);
+      background:rgba(255,255,255,0.60);
+      outline:none;
+      font-size:14px;
+      color:#7a1143;
+    }
+    .toolBtn{
+      width:100%;
+      padding:12px 14px;
+      border:none;
+      border-radius:14px;
+      cursor:pointer;
+      font-weight:900;
+      color:white;
+      background:linear-gradient(180deg, #ff66b5 0%, #ff3f9f 100%);
+      box-shadow:0 14px 28px rgba(255,63,159,0.25);
+    }
+    .dangerBtn{
+      margin-top:10px;
+      width:100%;
+      padding:12px 14px;
+      border:none;
+      border-radius:14px;
+      cursor:pointer;
+      font-weight:900;
+      color:white;
+      background:linear-gradient(180deg, #ff4b4b 0%, #d91e3a 100%);
+      box-shadow:0 14px 28px rgba(217,30,58,0.25);
+    }
+
+    @media (max-width:520px){
+      .stampGrid{ grid-template-columns:repeat(4, 1fr); }
+      .rewards, .actions{ grid-template-columns:1fr; }
+      .toolRow{ grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="petals" aria-hidden="true">
+    <span class="petal"></span><span class="petal"></span><span class="petal"></span><span class="petal"></span>
+    <span class="petal"></span><span class="petal"></span><span class="petal"></span><span class="petal"></span>
+  </div>
+
+  <div class="container">
+    <div class="card">
+
+      <div class="topbar">
+        <button class="pillBtn" id="backBtn">← Back</button>
+        <button class="pillBtn" id="logoutBtn">Logout</button>
+      </div>
+
+      <div class="title">Loyalty Stamp Card</div>
+      <div class="sub">5 stamps = ₱50 OFF • 10 stamps = ₱100 OFF + FREE sketch</div>
+      <div class="who" id="whoText"></div>
+
+      <div class="stampGrid" id="stampGrid"></div>
+
+      <div class="rewards">
+        <div class="reward" id="reward5">₱50 OFF (5 stamps)</div>
+        <div class="reward" id="reward10">₱100 OFF + FREE sketch (10 stamps)</div>
+      </div>
+
+      <div class="actions">
+        <button class="btnA" id="addStampBtn">Add Stamp</button>
+        <button class="btnB" id="resetBtn">Reset Card</button>
+      </div>
+
+      <!-- ✅ Admin Tools Section -->
+      <div class="adminTools">
+        <div class="toolsTitle">Admin Tools</div>
+
+        <div class="toolRow">
+          <input class="toolInput" id="newCustomerPass" placeholder="New customer password" />
+          <button class="toolBtn" id="saveCustomerPassBtn">Save Password</button>
+        </div>
+
+        <button class="dangerBtn" id="deleteCustomerBtn">Delete Customer Account</button>
+
+        <div style="margin-top:10px;font-size:12px;color:rgba(122,17,67,0.65);text-align:center;">
+          Delete removes the account permanently.
+        </div>
+      </div>
+
+      <p id="msg" style="min-height:18px; margin-top:10px; font-size:12px; color:rgba(122,17,67,0.75);"></p>
+
+    </div>
+  </div>
+
+  <script src="stamp.js"></script>
+</body>
+</html>

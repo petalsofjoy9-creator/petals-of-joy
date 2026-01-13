@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Petals of Joy | Account Settings</title>
+  <link rel="stylesheet" href="styles.css"/>
+
+  <style>
+    .topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px;}
+    .pillBtn{border:none;cursor:pointer;padding:10px 14px;border-radius:999px;background:rgba(255,255,255,0.75);color:#8b0f45;font-weight:800;box-shadow:0 12px 22px rgba(122,17,67,0.12);}
+
+    /* ✅ small inputs */
+    .panel{background:rgba(255,255,255,0.55);border:1px solid rgba(255,255,255,0.55);border-radius:18px;padding:14px;box-shadow:0 16px 32px rgba(122,17,67,0.10);}
+    .label{font-size:12px;color:rgba(122,17,67,0.70);margin:6px 0 6px;}
+    .inputSm{
+      width:100%;
+      padding:10px 12px;           /* smaller */
+      border-radius:999px;
+      border:1px solid rgba(255,79,163,0.35);
+      background:rgba(255,255,255,0.60);
+      outline:none;
+      font-size:14px;              /* smaller */
+      color:#7a1143;
+    }
+    .inputSm:focus{border-color:rgba(255,79,163,0.65);box-shadow:0 0 0 5px rgba(255,79,163,0.12);}
+    .btnMain{
+      width:100%;
+      padding:11px 12px;           /* smaller */
+      border:none;
+      border-radius:14px;
+      background:linear-gradient(180deg,#ff66b5 0%,#ff3f9f 100%);
+      color:white;
+      font-weight:900;
+      cursor:pointer;
+      box-shadow:0 14px 28px rgba(255,63,159,0.25);
+      margin-top:10px;
+    }
+    .note{margin-top:10px;font-size:12px;color:rgba(122,17,67,0.65);text-align:center;min-height:18px;}
+
+    .grid{display:grid;grid-template-columns:1fr;gap:14px;}
+    @media(min-width:900px){ .grid{grid-template-columns:1fr 1fr;} }
+  </style>
+</head>
+<body>
+
+  <div class="petals" aria-hidden="true">
+    <span class="petal"></span><span class="petal"></span><span class="petal"></span><span class="petal"></span>
+    <span class="petal"></span><span class="petal"></span><span class="petal"></span><span class="petal"></span>
+  </div>
+
+  <div class="container">
+    <div class="card">
+
+      <div class="topbar">
+        <button class="pillBtn" id="backBtn">← Back</button>
+        <button class="pillBtn" id="logoutBtn">Logout</button>
+      </div>
+
+      <div class="brand" style="font-size:28px;margin:0;text-align:left;">Account <span>Settings</span></div>
+      <div class="mini" style="margin-top:4px;">Change passwords + more updates later</div>
+
+      <div style="height:12px"></div>
+
+      <div class="grid">
+        <!-- Admin password -->
+        <div class="panel">
+          <h3 style="margin:0 0 10px;color:#8b0f45;">Change Admin Password</h3>
+
+          <div class="label">Admin username</div>
+          <input class="inputSm" id="adminUser" placeholder="e.g. admin" />
+
+          <div class="label">New password</div>
+          <input class="inputSm" id="adminPass" placeholder="New password" />
+
+          <button class="btnMain" id="saveAdminPassBtn">Save Admin Password</button>
+          <div class="note" id="adminMsg"></div>
+        </div>
+
+        <!-- Customer password -->
+        <div class="panel">
+          <h3 style="margin:0 0 10px;color:#8b0f45;">Change Customer Password</h3>
+
+          <div class="label">Customer username</div>
+          <input class="inputSm" id="custUser" placeholder="e.g. maria01" />
+
+          <div class="label">New password</div>
+          <input class="inputSm" id="custPass" placeholder="New password" />
+
+          <button class="btnMain" id="saveCustPassBtn">Save Customer Password</button>
+          <div class="note" id="custMsg"></div>
+        </div>
+
+        <!-- More updates placeholder -->
+        <div class="panel" style="grid-column:1 / -1;">
+          <h3 style="margin:0 0 10px;color:#8b0f45;">More Updates</h3>
+          <div class="mini">
+            We can add more admin tools here later (backup/export, customer history, reward logs, etc.) 🌸
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="settings.js"></script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Petals of Joy | My Loyalty Card</title>
+  <link rel="stylesheet" href="styles.css"/>
+
+  <style>
+    .topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px;}
+    .pillBtn{border:none;cursor:pointer;padding:10px 14px;border-radius:999px;background:rgba(255,255,255,0.75);color:#8b0f45;font-weight:700;box-shadow:0 12px 22px rgba(122,17,67,0.12);}
+    .title{font-size:30px;font-weight:900;color:#8b0f45;text-align:center;margin-top:6px;}
+    .sub{margin-top:10px;font-size:12px;letter-spacing:1px;color:rgba(122,17,67,0.65);text-align:center;}
+    .who{margin-top:8px;font-size:12px;color:rgba(122,17,67,0.7);text-align:center;}
+
+    .stampGrid{margin-top:18px;display:grid;grid-template-columns:repeat(5,1fr);gap:14px;justify-items:center;}
+    .circle{width:58px;height:58px;border-radius:999px;border:2.5px solid rgba(122,17,67,0.55);background:rgba(255,255,255,0.35);box-shadow:0 10px 22px rgba(0,0,0,0.06);display:flex;align-items:center;justify-content:center;}
+    .circle.filled{border-color:rgba(255,63,159,0.9);background:radial-gradient(circle at 30% 30%, rgba(255,255,255,0.95), rgba(255,110,190,0.80));}
+
+    .rewards{margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+    .reward{padding:12px;border-radius:16px;background:rgba(255,255,255,0.55);border:1px solid rgba(255,255,255,0.55);box-shadow:0 16px 30px rgba(122,17,67,0.10);text-align:center;font-weight:800;color:rgba(122,17,67,0.75);}
+    .reward.active{background:linear-gradient(180deg,#ff66b5 0%,#ff3f9f 100%);color:white;box-shadow:0 18px 40px rgba(255,63,159,0.35);border-color:transparent;}
+
+    /* Username box */
+    .userBox{
+      margin-top:16px;
+      padding:14px;
+      border-radius:18px;
+      background:rgba(255,255,255,0.55);
+      border:1px solid rgba(255,255,255,0.55);
+      box-shadow:0 16px 30px rgba(122,17,67,0.10);
+      text-align:center;
+    }
+    .userLabel{
+      font-size:12px;
+      color:rgba(122,17,67,0.65);
+      font-weight:700;
+      margin-bottom:6px;
+    }
+    .userValue{
+      font-size:22px;
+      font-weight:900;
+      color:#8b0f45;
+      letter-spacing:1px;
+      background:rgba(255,255,255,0.65);
+      display:inline-block;
+      padding:8px 14px;
+      border-radius:14px;
+      border:1px solid rgba(122,17,67,0.12);
+    }
+
+    .note{margin-top:14px;font-size:12px;color:rgba(122,17,67,0.7);text-align:center;}
+
+    @media (max-width:520px){
+      .stampGrid{ grid-template-columns:repeat(4,1fr); }
+      .rewards{ grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="petals" aria-hidden="true">
+    <span class="petal"></span><span class="petal"></span><span class="petal"></span><span class="petal"></span>
+    <span class="petal"></span><span class="petal"></span><span class="petal"></span><span class="petal"></span>
+  </div>
+
+  <div class="container">
+    <div class="card">
+
+      <div class="topbar">
+        <button class="pillBtn" id="printBtn">Print</button>
+        <button class="pillBtn" id="logoutBtn">Logout</button>
+      </div>
+
+      <div class="title">My Loyalty Card</div>
+      <div class="sub">5 stamps = ₱50 OFF • 10 stamps = ₱100 OFF + FREE sketch</div>
+      <div class="who" id="whoText"></div>
+
+      <div class="stampGrid" id="stampGrid"></div>
+
+      <div class="rewards">
+        <div class="reward" id="reward5">₱50 OFF (5 stamps)</div>
+        <div class="reward" id="reward10">₱100 OFF + FREE sketch (10 stamps)</div>
+      </div>
+
+      <!-- ✅ Username instead of QR -->
+      <div class="userBox">
+        <div class="userLabel">Show this username to the admin 🌸</div>
+        <div class="userValue" id="userCode">—</div>
+        <div class="userLabel" style="margin-top:10px;">
+          Admin can search this username to open your stamp card.
+        </div>
+      </div>
+
+      <div class="note">
+        Stamps are added by the admin after every purchase 🌸
+      </div>
+
+      <p id="msg" style="min-height:18px;margin-top:10px;font-size:12px;color:rgba(122,17,67,0.75);text-align:center;"></p>
+
+    </div>
+  </div>
+
+  <script src="customer.js"></script>
+</body>
+</html>
