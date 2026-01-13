@@ -1,0 +1,410 @@
+/* =========================
+   RESET
+========================= */
+*{ box-sizing:border-box; margin:0; padding:0; }
+html,body{ height:100%; }
+
+/* =========================
+   BACKGROUND
+========================= */
+body{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding: 28px;
+
+  /* soft pink gradient like your screenshot */
+  background:
+    radial-gradient(900px 600px at 25% 20%, rgba(255,255,255,0.75), transparent 55%),
+    radial-gradient(900px 600px at 80% 60%, rgba(255,255,255,0.45), transparent 55%),
+    linear-gradient(180deg, #ffd6e7 0%, #f8b6da 55%, #f5a6d1 100%);
+
+  /* nicer default font */
+  font-family: ui-serif, Georgia, "Times New Roman", serif;
+  color:#7a1143;
+}
+
+/* center container */
+.container{
+  width: 100%;
+  display:flex;
+  justify-content:center;
+}
+
+/* =========================
+   CARD (main box)
+========================= */
+.card{
+  width: min(430px, 92vw);
+  background: rgba(255,255,255,0.72);
+  border-radius: 28px;
+  padding: 34px 28px 30px;
+  text-align:center;
+
+  /* soft shadow like the screenshot */
+  box-shadow:
+    0 28px 65px rgba(122, 17, 67, 0.22);
+
+  /* glass look */
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.55);
+
+  position: relative;
+  z-index: 2;
+}
+
+/* flowery border glow (subtle, not harsh) */
+.card::before{
+  content:"";
+  position:absolute;
+  inset: -7px;
+  border-radius: 34px;
+  background: linear-gradient(135deg,
+    rgba(244,114,182,0.55),
+    rgba(251,207,232,0.75),
+    rgba(253,164,175,0.55),
+    rgba(244,114,182,0.55)
+  );
+  filter: blur(6px);
+  z-index: -1;
+}
+
+/* =========================
+   BRAND TEXT
+========================= */
+.brand{
+  font-size: 44px;
+  letter-spacing: 0.5px;
+  line-height: 1.05;
+  margin-bottom: 6px;
+  color:#8b0f45;
+  font-weight: 800;
+}
+
+.brand span{
+  color:#ff4fa3;
+}
+
+.subtitle{
+  font-size: 13px;
+  color: rgba(122,17,67,0.65);
+  margin-bottom: 22px;
+}
+
+/* =========================
+   FORM
+========================= */
+.form{
+  display:flex;
+  flex-direction:column;
+  gap: 16px;
+  margin-top: 6px;
+}
+
+.form input{
+  width:100%;
+  padding: 16px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 79, 163, 0.35);
+  background: rgba(255,255,255,0.60);
+  font-size: 18px;
+  outline: none;
+  color:#7a1143;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.9);
+}
+
+.form input::placeholder{
+  color: rgba(122,17,67,0.45);
+}
+
+.form input:focus{
+  border-color: rgba(255, 79, 163, 0.65);
+  box-shadow:
+    0 0 0 5px rgba(255, 79, 163, 0.16),
+    inset 0 1px 0 rgba(255,255,255,0.95);
+}
+
+/* =========================
+   BUTTON (nice gradient)
+========================= */
+.form button{
+  margin-top: 8px;
+  width:100%;
+  padding: 16px 18px;
+  border: none;
+  border-radius: 16px;
+  cursor:pointer;
+
+  font-size: 22px;
+  font-weight: 800;
+  color: white;
+
+  background: linear-gradient(180deg, #ff66b5 0%, #ff3f9f 100%);
+  box-shadow:
+    0 16px 30px rgba(255, 63, 159, 0.35);
+
+  transition: transform 0.10s ease, box-shadow 0.10s ease, filter 0.10s ease;
+}
+
+.form button:hover{
+  filter: brightness(1.03);
+  box-shadow:
+    0 18px 36px rgba(255, 63, 159, 0.40);
+}
+
+.form button:active{
+  transform: translateY(2px);
+  box-shadow:
+    0 10px 24px rgba(255, 63, 159, 0.34);
+}
+
+/* message text */
+#message{
+  min-height: 18px;
+  font-size: 13px;
+  color:#8b0f45;
+  margin-top: 6px;
+}
+
+/* =========================
+   PETALS (BACKGROUND ONLY)
+========================= */
+.petals{
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow:hidden;
+}
+
+.petal{
+  position:absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 12px 12px 12px 0;
+
+  /* softer petal color */
+  background: radial-gradient(circle at 30% 30%,
+    rgba(255,255,255,0.95),
+    rgba(255,205,225,0.85) 45%,
+    rgba(255,120,190,0.70) 100%
+  );
+
+  opacity: 0.35;
+  filter: blur(0.4px);
+
+  transform: rotate(25deg);
+  animation: floatDown linear infinite;
+}
+
+/* fewer + slower + more random */
+.petal:nth-child(1){ left: 8%;  top: -10%; animation-duration: 16s; animation-delay: 0s; }
+.petal:nth-child(2){ left: 22%; top: -18%; animation-duration: 19s; animation-delay: 1s; }
+.petal:nth-child(3){ left: 40%; top: -14%; animation-duration: 17s; animation-delay: 2.5s; }
+.petal:nth-child(4){ left: 58%; top: -22%; animation-duration: 20s; animation-delay: 0.8s; }
+.petal:nth-child(5){ left: 72%; top: -16%; animation-duration: 18s; animation-delay: 1.8s; }
+.petal:nth-child(6){ left: 86%; top: -26%; animation-duration: 21s; animation-delay: 3s; }
+.petal:nth-child(7){ left: 12%; top: -30%; animation-duration: 22s; animation-delay: 4s; }
+.petal:nth-child(8){ left: 92%; top: -28%; animation-duration: 16s; animation-delay: 2s; }
+
+@keyframes floatDown{
+  0%   { transform: translateY(0) translateX(0) rotate(25deg); }
+  50%  { transform: translateY(55vh) translateX(-10px) rotate(95deg); }
+  100% { transform: translateY(110vh) translateX(10px) rotate(160deg); opacity: 0.10; }
+}
+/* 🌸 Flower stamp inside filled circles */
+.circle.filled::after{
+  content: "🌸";
+  font-size: 26px;
+  line-height: 1;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.15));
+}
+.circle.filled::after{
+  content: "✿";
+  font-size: 28px;
+  color: #c2185b;
+  opacity: 0.85;
+  transform: rotate(-10deg);
+}
+/* 🌷 Pop animation */
+@keyframes stampPop {
+  0%   { transform: scale(0.6) rotate(-8deg); opacity: 0.2; }
+  60%  { transform: scale(1.15) rotate(6deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+/* 🌸 Stamp symbol (colorable) */
+.circle.filled::after{
+  content: "✿";
+  font-size: 28px;
+  color: #d81b60; /* normal pink */
+  opacity: 0.9;
+  animation: stampPop 240ms ease-out;
+}
+
+/* 🌸 Color changes for rewards */
+.card.reward-5 .circle.filled::after{
+  color: #c026d3; /* magenta at 5+ */
+}
+
+.card.reward-10 .circle.filled::after{
+  color: #f59e0b; /* gold at 10 */
+  text-shadow: 0 0 8px rgba(245,158,11,0.35);
+}
+
+/* 🖨 Print style (clean print) */
+@media print{
+  body{ background: white !important; padding: 0 !important; }
+  .petals{ display:none !important; }
+  .topbar{ display:none !important; }
+  .card{
+    box-shadow: none !important;
+    border: 1px solid #ddd !important;
+  }
+}
+/* ===========================
+   Responsive (Mobile + Laptop)
+   =========================== */
+
+/* Make sizing predictable */
+* { box-sizing: border-box; }
+
+/* Center content nicely on all screens */
+body{
+  min-height: 100vh;
+  margin: 0;
+}
+
+/* Container: mobile-first */
+.container{
+  width: 100%;
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Card: fits phone screens without overflow */
+.card{
+  width: 100%;
+  max-width: 420px;     /* phone/tablet */
+  padding: 18px;
+}
+
+/* Inputs & buttons: comfortable tap size */
+input, button{
+  min-height: 46px;
+}
+
+/* Tables: allow horizontal scroll on small screens */
+table{
+  width: 100%;
+}
+.panelBox > div[style*="overflow:auto"]{
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Make headings scale */
+.brand{ 
+  font-size: 34px;
+}
+.subtitle{
+  font-size: 13px;
+}
+
+/* ===========================
+   Tablet and up (>= 600px)
+   =========================== */
+@media (min-width: 600px){
+  .container{
+    padding: 28px;
+  }
+  .card{
+    max-width: 520px;  /* nicer on tablet */
+    padding: 22px;
+  }
+  .brand{ font-size: 40px; }
+}
+
+/* ===========================
+   Laptop/Desktop (>= 900px)
+   =========================== */
+@media (min-width: 900px){
+  .card{
+    max-width: 680px;  /* larger dashboard feels premium */
+    padding: 26px;
+  }
+
+  /* On large screens, allow more breathing space */
+  .panelBox{
+    padding: 18px;
+  }
+}
+
+/* ===========================
+   Very small phones (<= 360px)
+   =========================== */
+@media (max-width: 360px){
+  .card{ padding: 14px; }
+  .brand{ font-size: 30px; }
+}
+.linkBtn{
+  margin-top:10px;
+  background:transparent;
+  border:none;
+  cursor:pointer;
+  font-weight:800;
+  color:#8b0f45;
+  text-decoration:underline;
+}
+
+.forgotBox{
+  margin-top:14px;
+  padding:12px;
+  border-radius:18px;
+  background:rgba(255,255,255,0.55);
+  border:1px solid rgba(255,255,255,0.55);
+  box-shadow:0 16px 32px rgba(122,17,67,0.10);
+}
+
+.forgotTitle{
+  font-weight:900;
+  color:#8b0f45;
+  margin-bottom:10px;
+  text-align:center;
+}
+
+.forgotBox input{
+  width:100%;
+  padding:12px 14px;
+  border-radius:999px;
+  border:1px solid rgba(255,79,163,0.35);
+  background:rgba(255,255,255,0.60);
+  outline:none;
+  font-size:15px;
+  color:#7a1143;
+  margin-bottom:10px;
+}
+
+.forgotBox button{
+  width:100%;
+  padding:12px 14px;
+  border:none;
+  border-radius:14px;
+  background:linear-gradient(180deg,#ff66b5 0%,#ff3f9f 100%);
+  color:white;
+  font-weight:900;
+  cursor:pointer;
+  box-shadow:0 14px 28px rgba(255,63,159,0.30);
+}
+
+.forgotMsg{
+  margin-top:10px;
+  font-size:12px;
+  color:rgba(122,17,67,0.75);
+  text-align:center;
+  min-height:18px;
+}
